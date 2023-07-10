@@ -1,0 +1,6 @@
+[MASTER]
+disable=no-member,
+        no-self-use,
+        missing-module-docstring,
+        too-few-public-methods,
+        useless-option-value

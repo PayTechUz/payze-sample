@@ -1,0 +1,14 @@
+# IDE specific folders that must be igore
+.vscode/
+
+# Virtual Environment Python with Specific version
+venv/
+
+# SQLlite3 Specific File Based Database must be ignore
+db.sqlite3
+
+# __pycache__ Folder
+__pycache__/
+
+# environment variables
+.env
