@@ -4,11 +4,11 @@ This MVP project helps for implementing <a href="https://docs.payze.io/reference
 
 ### API Endpoints <br>
 
-### Call Back endpoints
-- `/v1/pay/` Pay the Order
+- `/v1/accept/` Accept Card Token And Transaction Values from Front Side
 - `/v1/success/` Call Back Success Endpoint
-- `/v1/accept/` Accept Card Token And Transacion Values from Front Side
 - `/v1/order/` Create a New Order with Specific Card ID
+- `/v1/pay/` Pay the Order
+
 - `/swagger/` Swagger for Testing Api Methods
 - `/admin/` The Admin Panel for Managing Data
 
