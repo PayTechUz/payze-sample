@@ -1,21 +1,12 @@
+"""
+the provider url patterns.
+"""
 from django.urls import path
 
-from apps.payment.views.pay import PayAPIView
-from apps.card.views.accept import CardAccceptAPIView
-from apps.callback.views import CallBackURLAPIView
-from apps.order.views.create import CreateOrderAPIView
+from apps.payment.providers.payze import views
 
 
 urlpatterns = [
-    # card
-    path('accept/', CardAccceptAPIView.as_view(), name='accept'),
-
-    # callback
-    path('success/', CallBackURLAPIView.as_view(), name='success'), 
-    
-    # order
-    path('order/', CreateOrderAPIView.as_view(), name='create'),
-    
-    # order
-    path("pay/", PayAPIView.as_view(), name='pay'), 
+    path('payment/payze/token', views.TokenAPIView.as_view()),
+    path('payment/payze/webhook/cards', views.CardsWebHooksAPIView.as_view())
 ]

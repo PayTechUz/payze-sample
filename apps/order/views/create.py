@@ -4,7 +4,6 @@ from rest_framework import views
 from rest_framework import response
 
 from apps.utility.logger import logger
-from apps.order.models.order import Order
 from apps.order.serializers import CreateOrderSerializer
 from apps.utility.exceptions import ServiceAPIException500
 

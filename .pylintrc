@@ -3,4 +3,8 @@ disable=no-member,
         no-self-use,
         missing-module-docstring,
         too-few-public-methods,
-        useless-option-value
+        useless-option-value,
+        W0621,
+        W0223,
+        I1101,
+        W0718

@@ -4,15 +4,12 @@ from rest_framework import views
 from rest_framework import response
 
 from apps.utility.logger import logger
-from apps.order.models.order import Order
-from apps.payment.libs.payze import payze
 from apps.payment.serializers import PaySerializer
 from apps.utility.exceptions import ServiceAPIException
 from apps.utility.exceptions import ServiceAPIException500
 
 
 class PayAPIView(views.APIView):
-    
     def post(self, request, *args, **kwargs):
         serializer = PaySerializer(
             data=request.data

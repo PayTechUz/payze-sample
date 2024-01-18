@@ -1,6 +1,5 @@
 """
-init payment models.
+initialize payment admin
 """
-from .base import * # noqa
 from .cards import * # noqa
 from .payer import * # noqa
