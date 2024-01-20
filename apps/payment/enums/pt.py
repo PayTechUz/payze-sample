@@ -8,4 +8,4 @@ class ProviderTypes(Enum):
     """
     the provider types enumeration
     """
-    PAYZE = 1
+    PAYZE = "Payze"

@@ -47,6 +47,12 @@ class CardsWebHookSerializers(pydantic.BaseModel):
         pydantic.Field(alias="CardBrand")
     expire_date: typing.Optional[str] = \
         pydantic.Field(alias="ExpirationDate")
+    rejected_reason: typing.Optional[str] = pydantic.Field(
+        alias="RejectionReason"
+    )
+    commission: typing.Optional[str] = pydantic.Field(
+        alias="Commission"
+    )
     payer: typing.Optional[Payer] = pydantic.Field(
         alias="Payer"
     )

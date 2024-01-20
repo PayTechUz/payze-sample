@@ -1,0 +1,15 @@
+{
+   ...
+   "Source": "Card",
+   "IdempotencyKey": "10233036-5385-4a97-9016-a0f6306fddc4",
+   "PaymentId": "736505FD22CD4D85A0D9FEC2C",
+   "Type": "PayWithCard",
+   "PaymentStatus": "Captured",
+   "Amount": 1.0,
+   "FinalAmount": 1.0,
+   "Currency": "UZS",
+   "Token": "CF61A2D0245C4397AAF0CEBD0",
+   "CardMask": "561468xxxxxx2832",
+   "CardBrand": "Uzcard"
+   ...
+}

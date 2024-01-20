@@ -1,5 +1,6 @@
 """
 initialize payment admin
 """
-from .cards import * # noqa
+from .card import * # noqa
 from .payer import * # noqa
+from .payment import * # noqa

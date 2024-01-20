@@ -7,52 +7,6 @@ from apps.payment.models import base
 from apps.payment.models import payer
 
 
-class CardVerifyPayment(base.BaseModel):
-    """
-    card verify payments.
-    """
-    class Meta:
-        """
-        meta fields
-        """
-        db_table = "card_verify_payments"
-
-    payment_id = base.models.CharField(
-        max_length=255,
-        null=False,
-        blank=False,
-        primary_key=True,
-        verbose_name=_("Payment ID"),
-    )
-    amount = base.models.FloatField(
-        verbose_name=_("Amount"),
-        default=0
-    )
-    currency = base.models.CharField(
-        max_length=6,
-        null=True,
-        blank=True,
-        verbose_name=_("Currency"),
-    )
-    payment_status = base.models.CharField(
-        max_length=16,
-        verbose_name=_("Payment Status"),
-    )
-    idempotency_key = base.models.CharField(
-        max_length=50,
-        null=True,
-        blank=True,
-        unique=True,
-        verbose_name=_("Idempotency Key"),
-    )
-    final_amount = base.models.FloatField(
-        verbose_name=_("Final Amount"),
-        default=0,
-        null=True,
-        blank=True,
-    )
-
-
 class Cards(base.BaseModel):
     """
     the cards database model.
@@ -62,10 +16,11 @@ class Cards(base.BaseModel):
         meta fields
         """
         db_table = "cards"
-    verify_payment = base.models.ForeignKey(
-        CardVerifyPayment,
-        on_delete=base.models.CASCADE,
-        verbose_name=_("Very Payment"),
+        verbose_name = _('Card')
+        verbose_name_plural = _('Cards')
+
+    payment_id = base.models.CharField(
+        verbose_name=_("Payment ID"),
     )
     number = base.models.CharField(
         max_length=18,

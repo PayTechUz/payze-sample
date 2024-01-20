@@ -1,0 +1,5 @@
+for testing
+
+- add card - should create two objets payment and card.
+- update card - should update three objets card, payer and payment.
+- deactivate card - should deactivate card, payer, payments object

@@ -42,7 +42,9 @@ class App(IApp):
         )
 
     def deactivate_card(self, card_params: Any) -> Any:
-        return super().deactivate_card(card_params)
+        card_processor.deactivate_card(
+            card_params=card_params
+        )
 
 
 app_context = App()

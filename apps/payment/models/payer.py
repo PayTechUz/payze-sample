@@ -15,13 +15,19 @@ class Payer(base.BaseModel):
         meta fields
         """
         db_table = "card_payer"
+        verbose_name = _('Payer')
+        verbose_name_plural = _('Payers')
 
     full_name = base.models.CharField(
         max_length=30,
+        null=True,
+        blank=True,
         verbose_name=_("Full Name"),
     )
     phone_number = base.models.CharField(
         max_length=30,
+        null=True,
+        blank=True,
         verbose_name=_("Phone Number"),
     )
     # additional fields should be added
