@@ -7,6 +7,7 @@ from typing import Any
 from django.db import transaction
 
 from apps.abc import storage
+from apps.abc.params.payment import Payment
 from apps.payment.enums import pt
 from apps.payment.enums import ps
 from apps.abc.params import cards
@@ -40,7 +41,7 @@ class PayzeCardProcessor(storage.CardProcessorABC):
                     invoice=card.payment_id,
                     amount=cards.payment.amount,
                     final_amount=cards.payment.final_amount,
-                    debt=cards.payment.amount,
+                    debit=cards.payment.amount,
                     credit=0,
                     reason=reason.PaymentReason.CARD_VERIFY.value,
                     currency=cards.payment.currency,
@@ -78,15 +79,21 @@ class PayzeCardProcessor(storage.CardProcessorABC):
                     }
                 )
 
+                if not card_params.payment.amount:
+                    debit = 0.0
+
+                if not card_params.payment.commission:
+                    commission = 0.0
+
                 payment, _ = Payments.objects.update_or_create(
                     invoice=payment_id,
                     defaults={
                         'card_id': card_object.id,
                         'order_id': 0,
-                        'commission': card_params.payment.commission,
+                        'commission': commission,
                         'amount': card_params.payment.amount,
                         'final_amount': card_params.payment.final_amount,
-                        'debt': card_params.payment.amount,
+                        'debit': debit,
                         'credit': 0,
                         'reason': reason.PaymentReason.CARD_VERIFY.value,
                         'currency': card_params.payment.currency,
@@ -109,7 +116,7 @@ class PayzeCardProcessor(storage.CardProcessorABC):
                     'commission': card_params.payment.commission,
                     'amount': card_params.payment.amount,
                     'final_amount': card_params.payment.final_amount,
-                    'debt': card_params.payment.amount,
+                    'debit': card_params.payment.amount,
                 }
 
                 Payments.objects.filter(pk=payment.pk).update(**payment_fields)
@@ -127,6 +134,7 @@ class PayzeCardProcessor(storage.CardProcessorABC):
                     'is_active': is_active,
                     'entity_type': card_params.card_entity_type,
                     'brand_types': card_params.card_brand,
+                    'payer': card_object.payer
                 }
 
                 Cards.objects.filter(pk=card_object.pk).update(**card_fields)
@@ -151,6 +159,11 @@ class PayzeCardProcessor(storage.CardProcessorABC):
 
         except Exception as exc:
             logger.error("Error deleting card object - %s", exc)
+
+    def create_payment(self, _: Payment) -> None:
+        raise NotImplementedError(
+            "create payment does not support in card processor"
+        )
 
 
 card_processor = PayzeCardProcessor()

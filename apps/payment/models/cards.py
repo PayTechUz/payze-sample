@@ -3,6 +3,8 @@ the cards database model
 """
 from django.utils.translation import gettext_lazy as _
 
+from apps.payment.enums import brands
+from apps.payment.enums import entity
 from apps.payment.models import base
 from apps.payment.models import payer
 
@@ -46,13 +48,18 @@ class Cards(base.BaseModel):
     )
     entity_type = base.models.CharField(
         max_length=100,
-        default="Unknown",
+        choices=[
+            (member.value, member.name) for member in entity.CardOwnerEntityType # noqa
+        ],
         verbose_name=_("Entity Type"),
     )
     brand_types = base.models.CharField(
         max_length=100,
         null=True,
         blank=True,
+        choices=[
+            (member.value, member.name) for member in brands.CardBrands
+        ],
         verbose_name=_("Brand Types"),
     )
     payer = base.models.ForeignKey(

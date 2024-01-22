@@ -6,9 +6,12 @@ from typing import Any
 from apps.abc import IApp
 from apps.abc.params import cp
 from apps.abc.params import cards
+from apps.abc.params.payment import Payment
 from apps.payment.enums import pt
 from apps.payment.providers import init_provider
+
 from apps.payment.providers.payze.processors.card import card_processor
+from apps.payment.providers.payze.processors.payment import payment_processor
 
 
 class App(IApp):
@@ -44,6 +47,11 @@ class App(IApp):
     def deactivate_card(self, card_params: Any) -> Any:
         card_processor.deactivate_card(
             card_params=card_params
+        )
+
+    def store_payment(self, payment: Payment) -> None:
+        payment_processor.store_payment(
+            payment=payment
         )
 
 

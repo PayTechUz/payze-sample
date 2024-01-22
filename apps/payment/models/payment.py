@@ -46,15 +46,15 @@ class Payments(base.BaseModel):
         null=True,
         blank=True
     )
-    debt = base.models.FloatField(
-        verbose_name=_("Debt"),
+    debit = base.models.FloatField(
+        verbose_name=_("Debit"),
         default=0,
-        null=False
+        null=True
     )
     credit = base.models.FloatField(
         verbose_name=_("Credit"),
         default=0,
-        null=False
+        null=True
     )
     reason = base.models.IntegerField(
         verbose_name=_("Reason"),
@@ -91,3 +91,14 @@ class Payments(base.BaseModel):
         unique=True,
         verbose_name=_("Idempotency Key"),
     )
+
+    def save(self, *args, **kwargs) -> None:
+        """"
+        custom save method.
+        """
+        self.commission = self.commission or 0.0
+        self.amount = self.amount or 0.0
+        self.final_amount = self.final_amount or 0.0
+        self.debit = self.debit or 0.0
+
+        super().save(*args, **kwargs)

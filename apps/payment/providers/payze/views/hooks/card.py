@@ -6,7 +6,6 @@ import logging
 from rest_framework import views
 from rest_framework import response
 
-from apps.abc.app import IApp
 from apps.app import app_context
 from apps.abc.params import cards
 from apps.abc.params import payment
@@ -24,7 +23,7 @@ class CardsWebHooksAPIView(views.APIView):
     """
     cards webhooks for card actions
     """
-    def post(self, request, app_context: IApp = app_context):
+    def post(self, request):
         """
         the post method for getting card updates
         """
@@ -41,6 +40,7 @@ class CardsWebHooksAPIView(views.APIView):
 
         payment_param = payment.Payment(
             payment_id=data.payment_id,
+            token=data.token,
             idempotency_key=data.idempotency_key,
             currency=data.currency,
             amount=data.amount,

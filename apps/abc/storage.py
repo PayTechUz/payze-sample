@@ -2,9 +2,9 @@
 storing abstraction.
 """
 import abc
-import typing
 
 from apps.abc.params import cards
+from apps.abc.params import payment
 
 
 class CardProcessorABC(abc.ABC):
@@ -19,15 +19,27 @@ class CardProcessorABC(abc.ABC):
         raise NotImplementedError("method should have implement in subclass")
 
     @abc.abstractmethod
-    def update_card(self, card_params: cards.CardInfo) -> typing.Any:
+    def update_card(self, card_params: cards.CardInfo) -> None:
         """"
         update card information in database.
         """
         raise NotImplementedError("method should have implement in subclass")
 
     @abc.abstractmethod
-    def deactivate_card(self, card_params: typing.Any) -> typing.Any:
+    def deactivate_card(self, card_params: cards.CardInfo) -> None:
         """
         deactivate the card
+        """
+        raise NotImplementedError("method should have implement in subclass")
+
+
+class PaymentProcessorABC(abc.ABC):
+    """
+    payment processor abstraction.
+    """
+    @abc.abstractmethod
+    def store_payment(self, payment: payment.Payment) -> None:
+        """
+        create a new payment in database.
         """
         raise NotImplementedError("method should have implement in subclass")

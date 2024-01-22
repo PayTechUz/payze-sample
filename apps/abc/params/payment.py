@@ -10,6 +10,8 @@ class Payment(pydantic.BaseModel):
     card very payments
     """
     payment_id: str
+    order_id: str
+    token: typing.Optional[str] = None
     amount: typing.Optional[float] = None
     currency: typing.Optional[str] = None
     commission: typing.Optional[float] = None
