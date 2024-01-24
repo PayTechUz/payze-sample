@@ -2,7 +2,7 @@
    ...
    "Source": "Card",
    "IdempotencyKey": "10233036-5385-4a97-9016-a0f6306fddc4",
-   "PaymentId": "736505FD22CD4D85A0D9FEC2C",
+   "PaymentId": "736505FxxxxxxxxA0D9FEC2C",
    "Type": "PayWithCard",
    "PaymentStatus": "Draft",
    "Amount": 1.0,
